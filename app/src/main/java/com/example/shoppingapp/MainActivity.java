@@ -27,6 +27,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,23 +59,6 @@ public class MainActivity extends AppCompatActivity {
         mReference = FirebaseDatabase.getInstance().getReference("Shops");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         binding.rvShops.setLayoutManager(linearLayoutManager);
-
-        binding.etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-
-                    searchShop(v.getText().toString());
-                    return true;
-
-                }
-
-                return false;
-
-            }
-        });
 
         mReference.addValueEventListener(new ValueEventListener() {
 
@@ -131,6 +116,11 @@ public class MainActivity extends AppCompatActivity {
                 String cat = snap.child("category").getValue(String.class);
                 category.add(cat);
 
+                Set<String> set = new LinkedHashSet<>();
+                set.addAll(category);
+                category.clear();
+                category.addAll(set);
+
             }
 
             ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,category);
@@ -179,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
 //
                         Intent intent = new Intent(MainActivity.this, SearchedShops.class);
                         Bundle args = new Bundle();
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         args.putSerializable("shops",(Serializable) shopsList);
                         intent.putExtra("bundle",args);
                         startActivity(intent);

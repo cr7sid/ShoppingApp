@@ -45,11 +45,12 @@ public class ShopDetailsActivity extends AppCompatActivity {
                 Uri gmmIntentUri =
                         Uri.parse("geo:37.7749,-122.4192?q=" + Uri.encode(shop.getAddress()));
 
-                Toast.makeText(ShopDetailsActivity.this, "CLICKED", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ShopDetailsActivity.this, "Opening Google Maps...", Toast.LENGTH_SHORT).show();
 
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                    Toast.makeText(ShopDetailsActivity.this, "Opening Google Maps...", Toast.LENGTH_SHORT).show();
                     startActivity(mapIntent);
                 }
 
