@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Shopping App</string>
+    <string name="search">Search products here...</string>
+    <string name="shop_name">Shop Name</string>
+    <string name="cat_name">Clothing</string>
+    <string name="cashback">Cashback 5%</string>
+    <string name="kms">12.10 km</string>
+    <string name="address">Chitrakoot Nagar, Udaipur, Rajasthan, 313001, India</string>
+    <string name="shareWhatsapp">Share on Whatsapp</string>
+    <string name="search_result">Search Results:</string>
+</resources>
